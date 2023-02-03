@@ -136,11 +136,11 @@ int main()
         cout << endl;
     }
 
-    cout << endl;
+    // cout << endl;
 
     for(int row = 0; row<6; row++){
 
-        for(int space = 0; space<row; space++){
+        for(int space = 0; space<=row; space++){
             cout << " " ;
         }
 
@@ -151,6 +151,9 @@ int main()
         cout << endl;
     }
     cout << endl;
+
+
+
 
     
 
