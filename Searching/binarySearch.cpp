@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 
+//TODO: Push the codes on github
+
 int binarySearch(int *arr, int element, int size)
 {
 
