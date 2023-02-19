@@ -6,7 +6,7 @@ int binarySearch(int divisor, int dividend)
     int s = 0;
     int e = dividend;
     int mid = s + (e - s) / 2;
-    int ans;
+    int ans = 1;
 
     while (s <= e)
     {
@@ -38,9 +38,13 @@ int main()
 {
 
     int divisor = 7;
-    int dividend = 22;
+    int dividend = -22;
 
-    int quotient = binarySearch(divisor, dividend);
+    int quotient = binarySearch(abs(divisor), abs(dividend));
+
+    if((divisor < 0 && dividend > 0) || (divisor >0 && dividend < 0)){
+        quotient = -quotient;
+    }
 
     cout << "Quotient is: " << quotient << endl;
 
