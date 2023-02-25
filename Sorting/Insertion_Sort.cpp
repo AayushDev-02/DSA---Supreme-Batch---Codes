@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 int main(){
@@ -10,7 +11,8 @@ int main(){
         int val = arr[i];
 
         //step 2: Compare
-        for(int j=i-1; j>=0; j--){
+        int j = i-1;
+        for(; j>=0; j--){
             if(arr[j] > val){
                 //shift
                 arr[j+1] = arr[j];
@@ -22,11 +24,15 @@ int main(){
         }
 
         //step 3: copy
-        arr[j] = val;
-
-
+        arr[j+1] = val;
 
     }
+
+    for(int i=0; i<6; i++){
+        cout << arr[i] << " ";
+    }
+
+    cout << endl;
 
     return 0;
 }
