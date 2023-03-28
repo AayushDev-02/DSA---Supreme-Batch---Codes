@@ -229,38 +229,108 @@ using namespace std;
 // ------------------------------------- Reverse a String ----------------------------------------
 
 
-void reverseString(string &s, int size, int i){
-    if(i > size - 1 - i){
-        return;
-    }
+// void reverseString(string &s, int size, int i){
+//     if(i > size - 1 - i){
+//         return;
+//     }
 
-    swap(s[i], s[size  - 1 - i]);
+//     swap(s[i], s[size  - 1 - i]);
 
-    reverseString(s, size, i+1);
-}
+//     reverseString(s, size, i+1);
+// }
 
-void reverseString_2pointer(string &s, int i, int j){
-    if(i>j){
-        return;
-    }
-    // cout << "Aaysuh" << endl;
+// void reverseString_2pointer(string &s, int i, int j){
+//     if(i>j){
+//         return;
+//     }
+//     // cout << "Aaysuh" << endl;
 
-    swap(s[i], s[j]);
-    i++;
-    j--;
+//     swap(s[i], s[j]);
+//     i++;
+//     j--;
 
-    reverseString_2pointer(s, i, j);
-}
+//     reverseString_2pointer(s, i, j);
+// }
 
 
-int main(){
+// int main(){
 
-    string s = "abcde";
-    int size = s.length();
-    // reverseString(s,size, 0);
-    reverseString_2pointer(s,0, size-1);
+//     string s = "abcde";
+//     int size = s.length();
+//     // reverseString(s,size, 0);
+//     reverseString_2pointer(s,0, size-1);
 
-    cout << s <<  endl;
+//     cout << s <<  endl;
 
-    return 0;
-}
+//     return 0;
+// }
+
+
+// ------------------------------------- Palindrom String ----------------------------------------
+
+
+// bool checkPalindrome(string s, int i, int j){
+//     if(i> j){
+//         return true;
+//     }
+
+//     if(s[i] != s[j]){
+//         return false;
+//     }
+//     else{
+//         i++;
+//         j--;
+//         return checkPalindrome(s, i, j);
+//     }
+// }
+
+// int main(){
+
+//     string s = "abcb";
+//     int size = s.length();
+//     int i=0;
+//     int j = size - 1;
+//     bool ans = checkPalindrome(s, i, j);
+
+//     if(ans) {
+//         cout << "String is a palindrome" << endl;
+//     }else{
+//         cout << "String is not a palindrome" << endl;
+//     }
+
+//     return 0;
+// }
+
+// ------------------------------------- Power ----------------------------------------
+
+// int power(int a, int n){
+//     if(n==0){
+//         return 1;
+//     }
+
+//     if(b==1){
+//         return a;
+//     }
+
+//     int ans = power(a, n/2);
+
+//     if(n%2 == 0){
+//         return ans*ans;
+//     }else{
+//         return a*ans*ans;   
+//     }
+// }
+
+
+// int main(){
+//     int a = 10;
+//     int n = 100;
+
+//     int ans = power(a,n);
+
+//     cout << " Ans is: " << ans << endl;
+
+//     return 0;
+// }
+
+//  -   
