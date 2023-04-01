@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include <string>
 using namespace std;
 
@@ -334,3 +335,75 @@ using namespace std;
 // }
 
 //  -   
+
+
+// --------------------------- Sub sequence of a string ---------------------
+
+
+// void findSubstring(string s, string output, int i){
+//     if(i >= s.length()){
+//         cout << output << " ";
+//         return;
+//     }
+
+//     //exclude case
+//     findSubstring(s, output, i+1);
+//     //include case
+//     output.push_back(s[i]);
+//     findSubstring(s, output, i+1);
+
+// }
+
+
+// int main(){
+
+//     string s = "abc";
+//     string output = "";
+//     int i=0;
+//     findSubstring(s,output, i);
+
+//     return 0;
+// }
+
+
+//  ---------------------- Achieve target with min no of elements from an array - IMPORTANT ---------------------------
+
+
+int solve(vector<int> arr, int target){
+    
+
+    //base case - if target becomes 0 or negative
+
+    if(target == 0){
+        return 0;
+    }
+
+    if(target < 0){
+        return INT_MAX;
+    }
+
+    int mini = INT_MAX;
+
+    for(int i=0; i<arr.size(); i++){
+        int ans = solve(arr, target - arr[i]);
+        if(ans != INT_MAX){
+            mini = min(mini, ans + 1);
+        }
+    }
+
+    return mini;
+
+}
+
+int main(){
+
+    vector<int> arr{1,2,3};
+    int target = 5;
+
+    int ans = solve(arr, target);
+
+    cout << "Answer is: " << ans << endl;
+
+    return 0;
+}
+
