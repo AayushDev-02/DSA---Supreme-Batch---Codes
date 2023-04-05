@@ -11,14 +11,12 @@ using namespace std;
 //     return n*factorial(n-1);
 // }
 
-
-
 // int main(){
 
-//     // factorial 
+//     // factorial
 //     int n=5;
 //     int ans = factorial(5);
-    
+
 //     cout << "Factorial of 5 is: " << ans << endl;
 
 //     return 0;
@@ -34,13 +32,12 @@ using namespace std;
 //     return fib(n-1) + fib(n-2);
 // }
 
-
 // int main(){
 
-//     // factorial 
+//     // factorial
 //     int n=1;
 //     int ans = fib(n);
-    
+
 //     cout << "5th Fib no is: " << ans << endl;
 
 //     return 0;
@@ -59,7 +56,6 @@ using namespace std;
 //     return (stair(n-1) + stair(n-2));
 // }
 
-
 // int main(){
 
 //     int n = 1;
@@ -73,10 +69,9 @@ using namespace std;
 
 // ------------------------ Say Digits ------------------------------------------
 
-
 // void sayDigits(int n, string arr[]){
 //     if(n==0){
-//         return; 
+//         return;
 //     }
 
 //     sayDigits(n/10, arr);
@@ -85,7 +80,6 @@ using namespace std;
 //     cout << arr[digit] << " ";
 
 // }
-
 
 // int main(){
 //     string arr[10] = {"Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"};
@@ -97,7 +91,6 @@ using namespace std;
 // }
 
 // -----------------------------------------Check sorted or not ---------------------------------------
-
 
 // bool checkSorted(int arr[],int size){
 //     if(size == 0 || size == 1 ){
@@ -111,9 +104,7 @@ using namespace std;
 //         return checkSorted(arr+1, size-1);
 //     }
 
-
 // }
-
 
 // int main(){
 
@@ -127,7 +118,6 @@ using namespace std;
 //         cout << "Array is not sorted " << endl;
 //     }
 
-
 //     return 0;
 // }
 
@@ -140,7 +130,6 @@ using namespace std;
 
 //     return arr[0] + sumArray(arr+1, size-1);
 // }
-
 
 // int main(){
 
@@ -166,7 +155,6 @@ using namespace std;
 //     }
 // }
 
-
 // int main(){
 
 //     int arr[10] = {1,2,3,55,23,32,80,33,50,11};
@@ -180,7 +168,6 @@ using namespace std;
 //     else{
 //         cout << "Element not found" << endl;
 //     }
-
 
 //     return 0;
 // }
@@ -204,7 +191,6 @@ using namespace std;
 //     }
 // }
 
-
 // int main(){
 
 //     int arr[10] = {1,2,3,55,23,32,80,33,50,11};
@@ -223,12 +209,10 @@ using namespace std;
 //         cout << "Element not found" << endl;
 //     }
 
-
 //     return 0;
 // }
 
 // ------------------------------------- Reverse a String ----------------------------------------
-
 
 // void reverseString(string &s, int size, int i){
 //     if(i > size - 1 - i){
@@ -253,7 +237,6 @@ using namespace std;
 //     reverseString_2pointer(s, i, j);
 // }
 
-
 // int main(){
 
 //     string s = "abcde";
@@ -266,9 +249,7 @@ using namespace std;
 //     return 0;
 // }
 
-
 // ------------------------------------- Palindrom String ----------------------------------------
-
 
 // bool checkPalindrome(string s, int i, int j){
 //     if(i> j){
@@ -318,10 +299,9 @@ using namespace std;
 //     if(n%2 == 0){
 //         return ans*ans;
 //     }else{
-//         return a*ans*ans;   
+//         return a*ans*ans;
 //     }
 // }
-
 
 // int main(){
 //     int a = 10;
@@ -334,11 +314,9 @@ using namespace std;
 //     return 0;
 // }
 
-//  -   
-
+//  -
 
 // --------------------------- Sub sequence of a string ---------------------
-
 
 // void findSubstring(string s, string output, int i){
 //     if(i >= s.length()){
@@ -354,7 +332,6 @@ using namespace std;
 
 // }
 
-
 // int main(){
 
 //     string s = "abc";
@@ -365,45 +342,147 @@ using namespace std;
 //     return 0;
 // }
 
-
 //  ---------------------- Achieve target with min no of elements from an array - IMPORTANT ---------------------------
 
+// int solve(vector<int> arr, int target){
 
-int solve(vector<int> arr, int target){
-    
+//     //base case - if target becomes 0 or negative
 
-    //base case - if target becomes 0 or negative
+//     if(target == 0){
+//         return 0;
+//     }
 
-    if(target == 0){
-        return 0;
+//     if(target < 0){
+//         return INT_MAX;
+//     }
+
+//     int mini = INT_MAX;
+
+//     for(int i=0; i<arr.size(); i++){
+//         int ans = solve(arr, target - arr[i]);
+//         if(ans != INT_MAX){
+//             mini = min(mini, ans + 1);
+//         }
+//     }
+
+//     return mini;
+
+// }
+
+// int main(){
+
+//     vector<int> arr{1,2,3};
+//     int target = 5;
+
+//     int ans = solve(arr, target);
+
+//     cout << "Answer is: " << ans << endl;
+
+//     return 0;
+// }
+
+// ----------------------- Integer to english words
+
+// vector<pair<int, string>> mp = {
+//     {1000000000, "Billion"},
+//     {1000000, "Million"},
+//     {1000, "Thousand"},
+//     {100, "Hundred"},
+//     {90, "Ninety"},
+//     {80, "Eighty"},
+//     {70, "Seventy"},
+//     {60, "Sixty"},
+//     {50, "Fifty"},
+//     {40, "Forty"},
+//     {30, "Thirty"},
+//     {20, "Twenty"},
+//     {19, "Nineteen"},
+//     {18, "Eighteen"},
+//     {17, "Seventeen"},
+//     {16, "Sixteen"},
+//     {15, "Fifteen"},
+//     {14, "Fourteen"},
+//     {13, "Thirteen"},
+//     {12, "Twelve"},
+//     {11, "Eleven"},
+//     {10, "Ten"},
+//     {9, "Nine"},
+//     {8, "Eight"},
+//     {7, "Seven"},
+//     {6, "Six"},
+//     {5, "Five"},
+//     {4, "Four"},
+//     {3, "Three"},
+//     {2, "Two"},
+//     {1, "One"},
+// };
+
+// string NoToWords(int num)
+// {
+
+//     // base case
+//     if (num == 0)
+//     {
+//         return "Zero"
+//     }
+//     for (auto i : mp)
+//     {
+//         if (i.first = < num)
+//         {
+//             string a = "";
+//             if (num >= 100)
+//             {
+//                 a = NoToWords(num / i.first) + " ";
+//             }
+
+//             string b = i.second;
+
+//             if (num % i.first != 0)
+//             {
+
+//                 string c = " " + NoToWords(num % i.first);
+//             }
+
+//             return a + b + c
+//         }
+//     }
+
+//     return "";
+// }
+
+// ---------------- Buy and sell stocks --------------------
+
+void solve(vector<int> &arr, int &minPrice, int &maxProfit, int i)
+{
+    if (i >= arr.size())
+    {
+        return;
     }
 
-    if(target < 0){
-        return INT_MAX;
+    // processing
+
+    if (arr[i] < minPrice)
+    {
+        minPrice = arr[i];
+    }
+    int todayProfit = arr[i] - minPrice;
+
+    if(todayProfit > maxProfit){
+        maxProfit = todayProfit;
     }
 
-    int mini = INT_MAX;
-
-    for(int i=0; i<arr.size(); i++){
-        int ans = solve(arr, target - arr[i]);
-        if(ans != INT_MAX){
-            mini = min(mini, ans + 1);
-        }
-    }
-
-    return mini;
-
+    solve(arr, minPrice, maxProfit, i+1);
 }
 
-int main(){
+int main()
+{
 
-    vector<int> arr{1,2,3};
-    int target = 5;
+    vector<int> arr = {1, 4, 2, 0, 7, 9};
+    int minPrice = INT_MAX;
+    int maxProfit = INT_MIN;
 
-    int ans = solve(arr, target);
+    int i = 0;
+    solve(arr, minPrice, maxProfit, i);
 
-    cout << "Answer is: " << ans << endl;
-
-    return 0;
+    cout << "The max profit is: " << maxProfit;
 }
-
