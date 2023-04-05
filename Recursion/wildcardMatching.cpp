@@ -3,7 +3,7 @@
 using namespace std;
 
 
-bool solve(string s, int si, string p,  int pi){
+bool solve(string &s, int si, string &p,  int pi){
 
     // base cases
 
