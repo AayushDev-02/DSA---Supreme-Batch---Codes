@@ -1,4 +1,5 @@
 #include <iostream>
+
 using namespace std;
 
 int main(){
@@ -18,4 +19,11 @@ int main(){
         }
         cout << endl;
     }
+
+    //deallocation
+    for(int i=0; i<row; i++){
+        delete []arr[i];
+    }
+
+    delete []arr;
 }
