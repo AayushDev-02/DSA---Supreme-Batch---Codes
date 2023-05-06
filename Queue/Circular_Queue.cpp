@@ -26,7 +26,7 @@ class CircularQueue {
             //first element
             else if(front==-1 && rear == -1){
                 rear = 0;
-                front-0; 
+                front=0; 
                 arr[rear] = data;
             }
 
