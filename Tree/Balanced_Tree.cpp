@@ -49,9 +49,36 @@ bool checkBalancedTree(Node* root){
 }
 
 
+//better approach
+pair<bool, int> checkBalancedTree2(Node* root){
+    if(root == NULL){
+        pair<bool, int> p = make_pair(true, 0);
+        return p;
+    }
+
+    pair<bool , int> left = checkBalancedTree2(root->left);
+    pair<bool , int> right = checkBalancedTree2(root->right);
+
+    bool leftAns = left.first;
+    bool rightAns = right.first;
+    bool diff = abs(left.second - right.second) <= 1;
+
+    pair<bool, int> ans;
+
+    ans.first = leftAns && rightAns && diff;
+    ans.second = max(left.second + right.second) + 1;
+
+    return ans; 
+}
+
+bool callerFunc(Node* root){
+    return checkBalancedTree2(root).first;
+}
+
+
 int main(){
 
-
+    
 
     return 0;
 }
