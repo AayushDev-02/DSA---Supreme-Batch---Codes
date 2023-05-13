@@ -12,9 +12,10 @@ class Node{
             this->left = NULL;
             this->right = NULL;
         }
-};
+};  
 
-void leftVeiw(Node* root, int *level, vector<int> *arr){
+
+void rightView(Node* root, int *level, vector<int> *arr){
     if(root == NULL){
         return;
     }
@@ -23,13 +24,13 @@ void leftVeiw(Node* root, int *level, vector<int> *arr){
         arr.push_back(root->data);
     }
 
-    root->left = leftView(root->left, level+1, arr);
     root->right = leftView(root->right, level+1, arr);
+    root->left = leftView(root->left, level+1, arr);
 
     return root;
 }
 
 
 int main(){
-
+    return 0;
 }
