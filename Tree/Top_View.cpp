@@ -38,7 +38,7 @@ void topView(Node* root){
 
         // check if to store it or not - check if answer for distance is present or not;
 
-        if(topNode.find(distance) == topNode.end()){
+        if(topNode.find(distance) == topNode.end()){    
             topNode[distance] = frontNode->data;
         }
 
