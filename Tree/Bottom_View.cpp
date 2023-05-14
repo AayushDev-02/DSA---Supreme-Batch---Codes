@@ -1,9 +1,7 @@
 #include <iostream>
-#include <queue>
 using namespace std;
-
 class Node{
-    public: 
+     public: 
         int data;
         Node* left;
         Node* right;
@@ -15,14 +13,15 @@ class Node{
         }
 };
 
-void topView(Node* root){
+
+void bottomView(Node* root){
     
     if(root == NULL){
         return;
     }
 
     //create a map for storing horizontal distance -> Topnode -> data
-    map<int,int> topNode;
+    map<int,int> bottomNode;
 
     //level order - we will store a pair consisting of a node and hd
     queue< pair<Node*,int> > q;
@@ -36,10 +35,8 @@ void topView(Node* root){
         Node* frontNode = temp.first;
         int hd = temp.second;
 
-        //check if we need to store or not
-        if(topNode.find(hd) == topNode.end()){          // no entry present condition
-            topNode[hd] = frontNode->data;
-        }   
+        //we need to update all the time
+        bottomNode[hd] = frontNode->data; 
 
         if(frontNode->left){
             q.push(make_pair(root->left, hd-1));
@@ -51,18 +48,7 @@ void topView(Node* root){
         }
 
     }
-
-    cout << "Printing top node: " << endl;
-
-    for(auto i: topNode){
-        cout << i.first << "->" << i.second << endl;
-    }
-
-
 }
-
-
-
 int main(){
     return 0;
 }
