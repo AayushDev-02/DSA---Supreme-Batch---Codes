@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 class Node{
@@ -31,5 +32,13 @@ void leftVeiw(Node* root, int *level, vector<int> *arr){
 
 
 int main(){
-    
+    Node* root = buildTree();
+    int level = 0;
+    vector<int> ans;
+
+    leftVeiw(root, level, ans);
+
+    for(auto i: ans){
+        cout << i << " ";
+    }
 }
