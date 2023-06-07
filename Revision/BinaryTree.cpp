@@ -642,6 +642,43 @@ void kSumPath(Node* root, int k, int &count, vector<int> &path){
 
 }
 
+//kth ancestor
+Node* kthAncestor(Node* root, int &k, int n){
+    if(root == NULL){
+        return NULL;
+    }
+
+    if(root->data == n){
+        return root;
+    }
+
+    Node* left = kthAncestor(root->left, k, n);
+    Node* right = kthAncestor(root->right, k, n);
+
+    if(left!= NULL && right==NULL){
+        k--;
+        if(k <= 0){
+            k = INT_MAX;
+            return root;
+        }
+
+        return left;
+    }
+    else if(right != NULL && left == NULL){
+        k--;
+        if(k<=0){
+            k = INT_MAX;
+            return root;
+        }
+
+        return right;
+    }
+    else{
+        return NULL;
+    }
+
+}
+
 int main(){
 
     Node* root = NULL;
