@@ -617,6 +617,31 @@ Node* lowestCommonAncestors(Node* root, int n1, int n2){
     }
 }
 
+// k sum paths
+void kSumPath(Node* root, int k, int &count, vector<int> &path){
+
+    if(root == NULL){
+        return;
+    }
+
+    path.push_back(root);
+
+    kSumPath(root->left, k, count, path);
+    kSumPath(root->right, k, count, path);
+
+    int size = path.size();
+    int sum = 0;
+
+    for(int i=size - 1; i>=0; i--){
+        sum+=path[i];
+
+        if(sum == k){
+            count ++;
+        }
+    }
+
+}
+
 int main(){
 
     Node* root = NULL;
