@@ -586,6 +586,37 @@ void bloodLine(Node* root, int sum, int &maxSum, int length, int &maxLength){
 
 }
 
+//lowest common ancestors
+
+Node* lowestCommonAncestors(Node* root, int n1, int n2){
+    if(root == NULL){
+        return NULL;
+    }
+
+    if(root->data == n1 || root->data == n2){
+        return root;
+    }
+
+    Node* left = lowestCommonAncestors(root->left, n1,n2);
+    Node* right = lowestCommonAncestors(root->right, n1,n2);
+
+    if(left == NULL && right == NULL){
+        return NULL;
+    }
+
+    else if(left == NULL && right != NULL){
+        return right;
+    }
+
+    else if(left != NULL && right == NULL){
+        return left;
+    }
+
+    else (left != NULL && right != NULL){
+        return root;
+    }
+}
+
 int main(){
 
     Node* root = NULL;
