@@ -1,5 +1,6 @@
 #include <iostream>
 #include <queue>
+#include <vector>
 using namespace std;
 
 class Node {
@@ -296,6 +297,52 @@ pair<int, bool> checkSumTree(Node* root){
 
 }
 
+//zig zag traversal
+vector<int> zigzagTraversal(Node* root){
+    vector<int> ans;
+    if(root == NULL){
+        return ans;
+    }
+
+    queue<Node*> q;
+    q.push(root);
+    bool leftToRight = true;
+
+    while(!q.empty()){
+        int s = q.size();
+        vector<int> res(size);
+
+        for(int i=0; i<size; i++){
+            Node* frontNode = q.front();
+            q.pop();
+            int index;
+            
+            if(leftToRight){
+                index = i;
+            }else{
+                index = size - i - 1;
+            }
+
+            res[index] = frontNode->data;
+
+            if(frontNode -> left ){
+                q.push(frontNode->left);
+            }
+
+            if(frontNode->right){
+                q.push(frontNode -> right);
+            }
+        }
+
+        leftToRight = !leftToRight;
+
+        for(auto i: res){
+            ans.push_back(i);
+        }
+
+    }
+        return result;
+}
 
 
 int main(){
