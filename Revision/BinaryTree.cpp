@@ -344,6 +344,118 @@ vector<int> zigzagTraversal(Node* root){
         return result;
 }
 
+//Boundary Traversal
+vector<int> boundaryTraversal(Node* root){
+    
+    vector<int> ans;
+    if(root == NULL){
+        return ans;
+    }
+    ans.push_back(root->data);
+    leftTraversal(root->left, ans);
+    leafTraversal(root, ans);
+    rightTraversal(root->right,ans)
+
+}
+
+//left traversal - excluding the leaf nodes
+void leftTraversal(Node* root, vector<int> &ans){
+    if(root == NULL){
+        return;
+    }
+
+    if(root->left == NULL && root->right == NULL){
+        return;
+    }
+
+    ans.push_back(root->data);
+
+    if(root->left){
+        leftTraversal(root->left);
+    }
+    else{
+        leftTraversal(root->right);
+    }
+}
+
+//right traversal - excluding the leaf nodes
+void rightTraversal(Node* root, vector<int> &ans){
+    if(root == NULL){
+        return;
+    }
+
+    if(root->left == NULL && root->right == NULL){
+        return;
+    }
+
+    if(root->right){
+        rightTraversal(root->right);
+    }
+    else{
+        rightTraversal(root->left);
+    }
+
+    ans.push_back(root->data);
+}
+
+//leaf traversal
+void leafTraversal(Node* root){
+    if(root == NULL){
+        return;
+    }
+
+    if(root->left == NULL && root->right == NULL){
+        ans.push_back(root);
+    }
+
+    leafTraversal(root->left);
+    leafTraversal(root->right);
+}
+
+//vertical traversal of binary tree
+vector<int> verticalTraversal(Node* root){
+
+    vector<int> ans;
+    if(root == NULL){
+        return ans;
+    }
+
+    map<int, map<int, vector<int>>> nodes;
+    queue<Node*, pair<int,int>> q;
+    q.push(root, make_pair(0,0));
+
+    while(!q.empty()){
+        pair<Node*, pair<int,int>> temp = q.front();
+        q.pop();
+
+        Node* frontNode = temp.first;
+        int hd = temp.second.first;
+        int level = temp.second.second;
+
+        //pushing element into the map on the basis of - level and hd
+        nodes[hd][level].push_back(frontNode->data);
+
+        if(frontNode->left){
+            q.push(make_pair(frontNode->left, make_pair(hd-1, level+1)));
+        }
+
+        if(frontNode->right){
+            q.push(make_pair(frontNode->right, make_pair(hd+1, level+1)));
+        }
+    }
+
+    for(auto i: nodes){
+        for(auto j: i.second){
+            for(auto k: j.second){
+                ans.push_back(k);
+            }
+        }
+    }
+
+    return ans;
+}
+
+
 
 int main(){
 
