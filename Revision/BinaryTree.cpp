@@ -136,6 +136,51 @@ void createTreeLOT(Node* &root){
     }
 }
 
+//counting the leaf nodes
+void leafCount(Node* root, int &count){
+    if(root == NULL){
+        return;
+    }
+
+    leafCount(root->left, count);
+    if(root->left == NULL && root->right == NULL){
+        count += 1;
+    }
+    leafCount(root->right, count);
+}
+
+
+//height of a binary tree
+int getHeight(Node* root){
+    if(root == NULL){
+        return 0;
+    }
+
+    int left = getHeight(root->left);
+    int right = getHeight(root->right);
+
+    return (max(left, right) + 1);
+
+}
+
+//diameter of a binary tree
+int getDiameter(Node* root){
+    if(root == NULL){
+        return 0;
+    }
+
+    int option1 = getDiameter(root->left);
+    int option2 = getDiameter(root->right);
+
+    int left = getHeight(root->left);
+    int right = getHeight(root->right);
+    int option3 = left + right + 1;
+
+    int ans = max(option1, max(option2, option3));
+
+    return ans;
+}
+
 
 
 int main(){
