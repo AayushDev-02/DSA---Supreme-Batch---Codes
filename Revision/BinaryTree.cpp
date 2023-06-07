@@ -181,6 +181,68 @@ int getDiameter(Node* root){
     return ans;
 }
 
+//diameter of a binary tree  - efficient approach
+pair<int,int> getDiameter2(Node* root){
+    if(root == NULL){
+        pair<int,int> p = make_pair(0,0);
+        return p;
+    }
+
+    pair<int,int> left = getDiameter2(root->left);
+    pair<int,int> right = getDiameter2(root->right);
+
+    int option1 = left.first;
+    int option2 = right.first;
+    int option3 = left.second + right.second + 1;
+
+    pair<int,int> ans;
+
+    ans.first = max(option1, max(option2, option3));
+    ans.second = max(left.second, right.second) + 1;
+
+    return ans;
+}
+
+//check for balanced tree
+bool checkBalanced(Node* root){
+    if(root == NULL){
+        return true;
+    }
+
+    bool left = checkBalanced(root->left);
+    bool right = checkBalanced(root->right);
+
+    bool diff = abs(getHeight(root->left) - getHeight(root->right)) <= 1;
+
+    if(left && right && diff){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+//check balanced - better complexity
+pair<bool, int> checkBalanced2(Node* root){
+    if(root == NULL){
+        pair<bool, int> p = make_pait(true, 0);
+        return p;
+    }
+
+    pair<bool, int> left = checkBalanced2(root->left);
+    pair<bool, int> right = checkBalanced2(root->right);
+
+    bool cnd1 = left.first;
+    bool cnd2 = right.first;
+    bool cnd3 = abs(left.second - right.second) <= 1;
+
+    pair<bool, int> ans;
+    ans.first = cnd1&&cnd2&&cnd3;
+    ans.second = max(left.second, right.second) + 1;
+
+    return ans;
+}
+
 
 
 int main(){
