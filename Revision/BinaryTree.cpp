@@ -535,6 +535,57 @@ vector<int> bottomView(Node* root){
     return ans;
 }
 
+//left view
+void leftView(Node* root, vector<int> &ans, int level){
+
+    if(root == NULL){
+        return;
+    }
+
+    if(level == ans.size()){
+        ans.push_back(root->data);
+    }
+
+    solve(root->left, ans, level+1);
+    solve(root->right, ans, level+1);
+}
+
+//right view
+void rightView(Node* root, vector<int> &ans, int level){
+    if(root == NULL){
+        return;
+    }
+
+    if(level == ans.size()){
+        ans.push_back(root->data);
+    }
+
+    solve(root->right, ans, level);
+    solve(root->left, ans, level);
+}
+
+//sum of longest bloodline in a tree
+void bloodLine(Node* root, int sum, int &maxSum, int length, int &maxLength){
+
+    if(root == NULL){
+        if(length > maxLength){
+            maxLength = length;
+            maxSum = sum;
+        }
+        else if( length == maxLength){
+            maxSum = max(maxSum, sum);
+        }
+        
+        return;
+    }
+
+    sum+=root->data;
+
+    bloodLine(root->left, sum, maxSum, length + 1, maxLength);
+    bloodLine(root->right, sum, maxSum, length + 1, maxLength);
+
+}
+
 int main(){
 
     Node* root = NULL;
