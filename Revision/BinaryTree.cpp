@@ -243,6 +243,32 @@ pair<bool, int> checkBalanced2(Node* root){
     return ans;
 }
 
+//identical tree or not
+bool checkIdentical(Node* root1, Node* root2){
+
+    if(root1 == NULL && root2 == NULL){
+        return true;
+    }
+
+    if(root1 == NULL && root2!= NULL){
+        return false;
+    }
+    if(root1 != NULL && root2 == NULL){
+        return false;
+    }
+
+    bool left = checkIdentical(root1->left, root2->left);
+    bool right = checkIdentical(root1->right, root2->right);
+
+    bool cnd3 = false;
+    if(root1->data == root2->data){
+        cnd3 = true;
+    }
+
+    return left && right && cnd3;
+
+}
+
 
 
 int main(){
