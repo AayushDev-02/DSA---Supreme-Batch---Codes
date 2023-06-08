@@ -679,6 +679,49 @@ Node* kthAncestor(Node* root, int &k, int n){
 
 }
 
+
+//morris traversal
+vector<int> morrisTraversal(Node* root) {
+    vector<int> ans;
+
+    if(root == NULL){
+        return ans;
+    }
+
+    Node* curr = root;
+
+    while(curr != NULL){
+        if(curr->left == NULL){
+            ans.push_back(curr->data);
+            curr = curr->right;
+        }
+        else{
+            Node* pred = curr->left;
+            while( pred->right != NULL && pred->right != curr ){
+                pred = pred->right;
+            }
+
+            if(pred->right == NULL){
+                pred->right = curr;
+                curr = curr->right;
+            }
+            else {
+                pred->right = NULL;
+                ans.push_back(curr->data);
+                curr = curr->right;
+            }
+
+
+        }
+
+    }
+
+    return ans;
+
+
+}
+
+
 int main(){
 
     Node* root = NULL;
