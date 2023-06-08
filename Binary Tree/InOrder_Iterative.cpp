@@ -48,7 +48,7 @@ vector<int> iterativePreOrder(Node* root){
 int main(){
 
 
-
+    iterativePreOrder(root);
 
     return 0;
 }
