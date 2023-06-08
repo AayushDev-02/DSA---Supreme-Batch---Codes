@@ -683,11 +683,7 @@ Node* kthAncestor(Node* root, int &k, int n){
 //morris traversal
 vector<int> morrisTraversal(Node* root) {
     vector<int> ans;
-
-    if(root == NULL){
-        return ans;
-    }
-
+    if(!root) return ans;
     Node* curr = root;
 
     while(curr != NULL){
@@ -697,29 +693,57 @@ vector<int> morrisTraversal(Node* root) {
         }
         else{
             Node* pred = curr->left;
-            while( pred->right != NULL && pred->right != curr ){
+            while(pred->right && pred->right != curr){
                 pred = pred->right;
             }
 
+            //case1: right is null
             if(pred->right == NULL){
                 pred->right = curr;
-                curr = curr->right;
-            }
-            else {
+                curr = curr->left;
+            }else{
                 pred->right = NULL;
                 ans.push_back(curr->data);
                 curr = curr->right;
             }
-
-
         }
-
     }
 
     return ans;
-
-
 }
+
+//flatten a binary tree into linked list
+void flatten(Node* root) {
+        if(root == NULL) return;
+        TreeNode* curr = root;
+
+        while(curr!=NULL){
+
+            if(curr->left == NULL){
+
+                curr = curr->right;
+
+            }else{  
+                TreeNode* pred = curr->left;
+                while(pred->right != NULL && pred->right != curr){
+                    pred = pred->right;
+                }
+
+                if(pred->right == NULL){
+                    pred->right = curr->right;
+                    curr->right = curr->left;
+                    curr->left = NULL;
+                    curr = curr->right;
+                }
+                else{
+                    curr->right = curr->left;
+                    curr->left = NULL;
+                }
+
+            }
+
+        }
+    }
 
 
 int main(){
