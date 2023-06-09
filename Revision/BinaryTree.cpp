@@ -745,6 +745,35 @@ void flatten(Node* root) {
         }
     }
 
+//tree from inorder and preorder
+Node* buildTreeFromPreOrderInOrder(vector<int> &preorder, vector<int> &inorder, int size, int preIndex, int inorderStart, int inorderEnd){
+    
+    //base case - preIndex should be within the array/vector
+    if(preIndex >= size || inorderStart > inorderEnd){
+        return NULL;
+    }
+
+    //stepA : 
+    int element = preorder[preIndex++];
+    Node* root = new Node(element);
+
+    //finding the element in the inorder array
+    int position = findPosition(inorder, size, element);
+
+    root->left = buildTreeFromPreOrderInOrder(preorder, inorder, size, preIndex, inorderStart, position - 1);
+    root->right = buildTreeFromPreOrderInOrder(preorder, inorder, size, preIndex, position+1, inorderEnd);
+
+    return root;
+}
+
+int findPosition(vector<int> &inorder, int size, int element){
+    for(int i=0; i<size; i++){
+        if(arr[i] == element){
+            return i;
+        }
+    }
+    return -1;
+}
 
 int main(){
 
