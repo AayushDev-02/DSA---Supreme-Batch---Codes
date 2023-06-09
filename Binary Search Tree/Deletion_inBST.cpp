@@ -61,10 +61,8 @@ Node* deleteNodeInBST(Node* root, int val){
         return NULL;
     }
 
-    Node* temp = root;
-
     if(root->data == val){
-        //case1 : 0 child
+        // no child
         if(root->left == NULL && root->right == NULL){
             delete root;
             return NULL;
@@ -75,37 +73,35 @@ Node* deleteNodeInBST(Node* root, int val){
             delete root;
             return temp;
         }
-        if(root->left != NULL && root->right == NULL){
+
+        if(root->left !=NULL && root->right == NULL){
             Node* temp = root->left;
             delete root;
             return temp;
         }
 
-        if(root->left != NULL && root->right != NULL){
-            // find either min value from right sub tree or max value from left sub tree
-            //min value from right sub tree
-            Node* temp = root->right;
-
-            while(temp->left != NULL){
-                temp = temp->left;
+        if(root->left!=NULL && root->right!=NULL){
+            //max from left
+            Node* temp = root->left;
+            while(temp->right != NULL){
+                temp = temp->right;
             }
-            int mini = temp->data;
-            root->data = mini;
-            root->right = deleteNodeInBST(root->right, mini); 
+
+            int max = temp->data;
+            root->data = max;
+            root->left = deleteNodeInBST(root->left, max);
+
             return root;
         }
-
-    }
-    else if(root->data < val){
+    }else if(root->data < val){
         root->right = deleteNodeInBST(root->right, val);
         return root;
     }else{
-
         root->left = deleteNodeInBST(root->left, val);
         return root;
     }
     
-    
+    ;
 
 }
 
