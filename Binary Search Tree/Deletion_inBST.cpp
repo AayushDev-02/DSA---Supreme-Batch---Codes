@@ -53,6 +53,62 @@ void preOrder(Node* root){
     preOrder(root->right);
 }
 
+
+//deleting a node in bst
+Node* deleteNodeInBST(Node* root, int val){
+
+    if(root == NULL){
+        return NULL;
+    }
+
+    Node* temp = root;
+
+    if(root->data == val){
+        //case1 : 0 child
+        if(root->left == NULL && root->right == NULL){
+            delete root;
+            return NULL;
+        }
+
+        if(root->left == NULL && root->right != NULL){
+            Node* temp = root->right;
+            delete root;
+            return temp;
+        }
+        if(root->left != NULL && root->right == NULL){
+            Node* temp = root->left;
+            delete root;
+            return temp;
+        }
+
+        if(root->left != NULL && root->right != NULL){
+            // find either min value from right sub tree or max value from left sub tree
+            //min value from right sub tree
+            Node* temp = root->right;
+
+            while(temp->left != NULL){
+                temp = temp->left;
+            }
+            int mini = temp->data;
+            root->data = mini;
+            root->right = deleteNodeInBST(root->right, mini); 
+            return root;
+        }
+
+    }
+    else if(root->data < val){
+        root->right = deleteNodeInBST(root->right, val);
+        return root;
+    }else{
+
+        root->left = deleteNodeInBST(root->left, val);
+        return root;
+    }
+    
+    
+
+}
+
 int main(){
 
     Node* root = NULL;
@@ -63,7 +119,10 @@ int main(){
         cout << "Root is null";
     }
     preOrder(root);
-
+    cout << endl;
+    deleteNodeInBST(root,5);
+    cout << endl;
+    preOrder(root);
 
 
     return 0;
