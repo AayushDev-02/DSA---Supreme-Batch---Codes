@@ -746,7 +746,7 @@ void flatten(Node* root) {
     }
 
 //tree from inorder and preorder
-Node* buildTreeFromPreOrderInOrder(vector<int> &preorder, vector<int> &inorder, int size, int preIndex, int inorderStart, int inorderEnd){
+Node* buildTreeFromPreOrderInOrder(vector<int> &preorder, vector<int> &inorder, int size, int &preIndex, int inorderStart, int inorderEnd){
     
     //base case - preIndex should be within the array/vector
     if(preIndex >= size || inorderStart > inorderEnd){
@@ -773,6 +773,26 @@ int findPosition(vector<int> &inorder, int size, int element){
         }
     }
     return -1;
+}
+
+//build tree from postorder, inorder
+Node* buildTreeFromPostOrderInOrder(vector<int> &postorder, vector<int> &inorder, int size, int &postIndex, int inStart, int inEnd)
+{
+    if(postIndex < 0 || inStart > inEnd){
+        return NULL;
+    }
+
+    int element = postorder[size-postIndex-1];
+    postIndex--;
+    Node* root = new Node(element);
+
+    //find position in inorder
+    int position = findPosition(inorder, size, element);
+
+    root->right = buildTreeFromPostOrderInOrder(postorder, inorder, size, postorder, position+1, inEnd);
+    root->left = buildTreeFromPostOrderInOrder(postorder, inorder, size, postorder, inStart, position-1);
+
+    return root;
 }
 
 int main(){
