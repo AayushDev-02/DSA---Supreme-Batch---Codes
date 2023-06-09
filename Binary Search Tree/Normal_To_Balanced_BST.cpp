@@ -66,14 +66,18 @@ void inOrderTraversal(Node* root, vector<int> &arr){
 }
 
 
-void solve(Node*root, int arr, int size, int start, int end){
+void solve(vector<int> arr, int start, int end){
     
 
-    int mid = start+(end-start)/2;
-    root->data = arr[mid];
+    if(start > end){
+        return;
+    }
 
-    solve(root->left, arr, size, start, mid-1);
-    solve(root->right, arr, size, mid+1, end);
+    int mid = start+(end-start)/2;
+
+    Node* root = new Node(arr[mid]);
+    solve(root->left, start, mid-1);
+    solve(root->left, mid+1, end);
 
     return root;
 }
@@ -88,7 +92,7 @@ Node* normalToBST(Node* root){
     int start = 0;
     int end = arr.size()-1;
 
-    solve(root, arr, size,  start, end);
+    solve( arr, start, end);
 
     return root;
 
